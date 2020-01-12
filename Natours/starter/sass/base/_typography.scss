@@ -1,0 +1,46 @@
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7;
+  color: $color-grey-dark;
+  padding: 3rem;
+}
+
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  /* ****这里有一个神秘的现象，当动画渲染完后，会很轻微上跳一下，目前没人知道原因，但可以用以下方法去除这种现象 */
+  backface-visibility: hidden;
+  margin-bottom: 6rem;
+
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    /* animation-timing-function specifies how a css animation should progress over the duration of each cycle */
+    /* ease-in is slower towards the beginning and faster towards the end, ease-out is the opposite */
+    animation-timing-function: ease-out;
+
+    /* 添加下面这个animation-delay后，进入网页时，动画效果不会立即出现，会延迟三秒才出现 */
+    /* animation-delay: 3s; */
+
+    /* 设置进入网页后或者刷新网页后动画运行次数 */
+    /* animation-iteration-count: 3; */
+  }
+
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    /* animation-name, animation-duration和animation-timing-function
+    这三个最重要的animation参数可以合成一个animation */
+    animation: moveInRight 1s ease-out;
+  }
+}

@@ -1,0 +1,71 @@
+.btn {
+  /* 这两个只要是anchor tag最好都加上:link和:visited */
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all 0.2s;
+    /* 添加position是为了设置.btn::after隐藏再.btn后面 */
+    position: relative;
+    font-size: 1.6rem;
+  }
+
+  &:hover {
+    transform: translateY(-0.3rem);
+    /* box-shadow: x y blur值 color */
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    &::after {
+      /* scaleX在x方向上缩放, scaleY在y方向上缩放 */
+      transform: scale(1.6);
+      /* 这个trick就用与fade something out, 非常有用.btn::after在鼠标在按钮上悬浮时变透明，看上去就像逐渐消失一样 */
+      opacity: 0;
+    }
+  }
+
+  /* :active就是指点击的时候 */
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  /* 这里.btn::after相当于再建一个button，content属性必须添加，可以为空值
+   这个.btn::after相当于.btn的子元素，所以height: 100%和width: 100%
+   是相对于.btn而言
+*/
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* transition属性一定要放在初始的元素状态上 */
+    transition: all 0.4s;
+  }
+
+  &--animated {
+    /* animation-name, animation-duration, animation-timing-function, animation-delay */
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    /* 由于.btn 和.btn-animated 在同一个元素上，后续.btn-animated类会在其他元素上使用所以这样设置,
+       这就导致了元素一开始并不会在动画等待时间里从初始帧的属性应用，用backwards就是将元素设置为第一帧时候
+       的属性应用。
+    */
+    animation-fill-mode: backwards;
+  }
+}

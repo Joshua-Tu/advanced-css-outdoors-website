@@ -1,0 +1,33 @@
+.header {
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url("../img/hero.jpg");
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100vh);
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    position: absolute;
+    /* 这里的top和left是相对于父元素而言，父元素是.header的div, 其position是relative */
+    top: 40%;
+    left: 50%;
+    /* translate中的-50% -50%意味着将该元素相对自己的左边x轴，上边y轴移动增量的距离，负数向左，正数向右 */
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}
