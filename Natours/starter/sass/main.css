@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
 COLORS:
 
@@ -6,13 +7,13 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
-
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 
 html {
@@ -26,22 +27,21 @@ body {
   line-height: 1.7;
   color: #777;
   padding: 3rem;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .header {
   height: 95vh;
-  background-image: linear-gradient(
-      to right bottom,
-      rgba(126, 213, 111, 0.8),
-      rgba(40, 180, 131, 0.8)
-    ),
-    url("../img/hero.jpg");
+  background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(85, 197, 122, 0.8)), to(rgba(40, 180, 133, 0.8))), url("../img/hero.jpg");
+  background-image: linear-gradient(to right bottom, rgba(85, 197, 122, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
   background-size: cover;
   background-position: top;
   position: relative;
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100vh);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100vh);
+          clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100vh);
 }
+
 .header__logo-box {
   position: absolute;
   top: 4rem;
@@ -58,7 +58,8 @@ body {
   top: 40%;
   left: 50%;
   /* translate中的-50% -50%意味着将该元素相对自己的左边x轴，上边y轴移动增量的距离，负数向左，正数向右 */
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   text-align: center;
 }
 
@@ -67,7 +68,8 @@ body {
   text-transform: uppercase;
   letter-spacing: 5px;
   /* ****这里有一个神秘的现象，当动画渲染完后，会很轻微上跳一下，目前没人知道原因，但可以用以下方法去除这种现象 */
-  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
   margin-bottom: 6rem;
 }
 
@@ -76,16 +78,16 @@ body {
   font-size: 6rem;
   font-weight: 400;
   letter-spacing: 3.5rem;
-
-  animation-name: moveInLeft;
-  animation-duration: 1s;
+  -webkit-animation-name: moveInLeft;
+          animation-name: moveInLeft;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
   /* animation-timing-function specifies how a css animation should progress over the duration of each cycle */
   /* ease-in is slower towards the beginning and faster towards the end, ease-out is the opposite */
-  animation-timing-function: ease-out;
-
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
   /* 添加下面这个animation-delay后，进入网页时，动画效果不会立即出现，会延迟三秒才出现 */
   /* animation-delay: 3s; */
-
   /* 设置进入网页后或者刷新网页后动画运行次数 */
   /* animation-iteration-count: 3; */
 }
@@ -97,58 +99,114 @@ body {
   letter-spacing: 1.75rem;
   /* animation-name, animation-duration和animation-timing-function
   这三个最重要的animation参数可以合成一个animation */
-  animation: moveInRight 1s ease-out;
+  -webkit-animation: moveInRight 1s ease-out;
+          animation: moveInRight 1s ease-out;
+}
+
+@-webkit-keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-10rem) rotate(0deg);
+            transform: translateX(-10rem) rotate(0deg);
+  }
+  60% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  /* 这里可以造就一个小小的回弹效果，往右边稍微移动一下 */
+  80% {
+    -webkit-transform: translateX(1rem) rotate(180deg);
+            transform: translateX(1rem) rotate(180deg);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
 }
 
 @keyframes moveInLeft {
   0% {
     opacity: 0;
-    transform: translateX(-10rem) rotate(0deg);
+    -webkit-transform: translateX(-10rem) rotate(0deg);
+            transform: translateX(-10rem) rotate(0deg);
   }
-
   60% {
-    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
   }
-
   /* 这里可以造就一个小小的回弹效果，往右边稍微移动一下 */
   80% {
-    transform: translateX(1rem) rotate(180deg);
+    -webkit-transform: translateX(1rem) rotate(180deg);
+            transform: translateX(1rem) rotate(180deg);
   }
-
   100% {
     opacity: 1;
-    transform: translate(0);
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+
+@-webkit-keyframes moveInRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(10rem);
+            transform: translateX(10rem);
+  }
+  80% {
+    -webkit-transform: translateX(-1rem);
+            transform: translateX(-1rem);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(0);
+            transform: translate(0);
   }
 }
 
 @keyframes moveInRight {
   0% {
     opacity: 0;
-    transform: translateX(10rem);
+    -webkit-transform: translateX(10rem);
+            transform: translateX(10rem);
   }
-
   80% {
-    transform: translateX(-1rem);
+    -webkit-transform: translateX(-1rem);
+            transform: translateX(-1rem);
   }
-
   100% {
     opacity: 1;
-    transform: translate(0);
+    -webkit-transform: translate(0);
+            transform: translate(0);
   }
 }
 
 /* 这个动画设置是让按钮从下到上进入页面 */
+@-webkit-keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(3rem);
+            transform: translateY(3rem);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
 @keyframes moveInBottom {
   0% {
     opacity: 0;
-    transform: translateY(3rem);
+    -webkit-transform: translateY(3rem);
+            transform: translateY(3rem);
   }
-
   100% {
     opacity: 1;
-    transform: translateY(0);
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
   }
 }
+
 /* 这两个只要是anchor tag最好都加上:link和:visited */
 .btn:link,
 .btn:visited {
@@ -157,6 +215,7 @@ body {
   padding: 1.5rem 4rem;
   display: inline-block;
   border-radius: 10rem;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   /* 添加position是为了设置.btn::after隐藏再.btn后面 */
   position: relative;
@@ -164,15 +223,19 @@ body {
 }
 
 .btn:hover {
-  transform: translateY(-0.3rem);
+  -webkit-transform: translateY(-0.3rem);
+          transform: translateY(-0.3rem);
   /* box-shadow: x y blur值 color */
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+          box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
 /* :active就是指点击的时候 */
 .btn:active {
-  transform: translateY(-1px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 .btn--white {
@@ -195,6 +258,7 @@ body {
   left: 0;
   z-index: -1;
   /* transition属性一定要放在初始的元素状态上 */
+  -webkit-transition: all 0.4s;
   transition: all 0.4s;
 }
 
@@ -204,17 +268,21 @@ body {
 
 .btn:hover::after {
   /* scaleX在x方向上缩放, scaleY在y方向上缩放 */
-  transform: scale(1.6);
+  -webkit-transform: scale(1.6);
+          transform: scale(1.6);
   /* 这个trick就用与fade something out, 非常有用.btn::after在鼠标在按钮上悬浮时变透明，看上去就像逐渐消失一样 */
   opacity: 0;
 }
 
 .btn--animated {
   /* animation-name, animation-duration, animation-timing-function, animation-delay */
-  animation: moveInBottom 0.5s ease-out 0.75s;
+  -webkit-animation: moveInBottom 0.5s ease-out 0.75s;
+          animation: moveInBottom 0.5s ease-out 0.75s;
   /* 由于.btn 和.btn-animated 在同一个元素上，后续.btn-animated类会在其他元素上使用所以这样设置,
      这就导致了元素一开始并不会在动画等待时间里从初始帧的属性应用，用backwards就是将元素设置为第一帧时候
      的属性应用。
   */
-  animation-fill-mode: backwards;
+  -webkit-animation-fill-mode: backwards;
+          animation-fill-mode: backwards;
 }
+/*# sourceMappingURL=main.css.map */
